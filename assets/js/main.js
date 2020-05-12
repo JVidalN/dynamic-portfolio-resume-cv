@@ -1,12 +1,19 @@
 "use strict";
 
-const getGitHubPublicData = async (user) => {
+const getGitHubPublicData = (user) => {
   let urlRepository = `https://api.github.com/users/${user}/repos`;
-  return await fetch(urlRepository, {
+  return fetch(urlRepository, {
     method: "GET",
   })
     .then((response) => response.json())
-    .then((result) => result)
+    .then(
+      (result) =>
+        ({
+          name: result.name,
+          description: result.description,
+          html_url: result.html_url,
+        } = result)
+    )
     .catch((error) => console.log("error", error));
 };
 
