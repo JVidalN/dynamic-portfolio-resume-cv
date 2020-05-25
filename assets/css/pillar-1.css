@@ -9091,17 +9091,17 @@ a.theme-btn-on-bg:active,
   }
 }
 
-.portifolio-section-content {
+.portfolio-section-content {
   color: #58677c;
 }
 
-.portifolio-section-title {
+.portfolio-section-title {
   font-size: 1.25rem;
   position: relative;
   color: #434e5e;
 }
 
-.portifolio-section-title:after {
+.portfolio-section-title:after {
   content: "";
   position: absolute;
   left: 0;
@@ -9111,7 +9111,7 @@ a.theme-btn-on-bg:active,
   background: #8d9aad;
 }
 
-.portifolio-section-content {
+.portfolio-section-content {
   color: #58677c;
 }
 
