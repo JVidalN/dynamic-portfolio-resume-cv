@@ -31,7 +31,7 @@ const createPortfolioElement = (repositories) => {
     divCardImgElement.classList.add("card_image");
 
     let imgElement = document.createElement("img");
-    imgElement.setAttribute("src", "../assets/images/portifolio-github.png");
+    imgElement.setAttribute("src", "../assets/images/portfolio-github.png");
     divCardImgElement.appendChild(imgElement);
 
     let divCardContentElement = document.createElement("div");

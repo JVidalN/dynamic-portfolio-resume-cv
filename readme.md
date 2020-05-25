@@ -10,7 +10,7 @@ This template was designed by [Xiaoying Riley](http://themes.3rdwavemedia.com) a
 
 For the Portfolio section i used features of ECMAScript like: `Arrow Functions`,`Destructuring Assignment`, `String Interpolation`, `const and let Variables`.
 
-![](https://media.giphy.com/media/H4oHSB0NXmvKiesbH1/giphy.gif)
+![](portfolio-auto-update.gif)
 
 The data is obtained the public API data from githhub itself `https://api.github.com/users/${user}/repos`.
 
