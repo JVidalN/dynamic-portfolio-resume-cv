@@ -114,10 +114,6 @@ const createResumeSection = (data) => {
   const sectionElement = document.querySelector("section.resume-section.summary-section.mb-5");
 
   const createDivResumeContent = () => {
-    // <div class="resume-section-content">
-    //   <p class="mb-0">
-    //   </p>
-    // </div>
     const divResumeContent = document.createElement("div");
     divResumeContent.classList.add("resume-section-content");
 
@@ -140,6 +136,122 @@ const createResumeSection = (data) => {
   return { appendElementsInSection };
 };
 
+const createExperienceSection = (data) => {
+  const _resume = {};
+  Object.assign(_resume, data);
+
+  const divElement = document.querySelector("div.resume-timeline.position-relative");
+
+  const createArticleElement = () => {
+    //< article class="resume-timeline-item position-relative pb-5" >
+    const articleElement = document.createElement("article");
+    articleElement.classList.add("resume-timeline-item");
+    articleElement.classList.add("position-relative");
+    articleElement.classList.add("pb-5");
+
+    return articleElement;
+  };
+
+  const createDivHeaderElement = (experience) => {
+    const _experience = {};
+    Object.assign(_experience, experience);
+    const divHeaderElement = document.createElement("div");
+    divHeaderElement.classList.add("resume-timeline-item-header");
+    divHeaderElement.classList.add("mb-2");
+
+    const divPositionElement = document.createElement("div");
+    divPositionElement.classList.add("d-flex");
+    divPositionElement.classList.add("flex-column");
+    divPositionElement.classList.add("flex-md-row");
+
+    const h3PositionElement = document.createElement("h3");
+    h3PositionElement.classList.add("resume-position-title");
+    h3PositionElement.classList.add("font-weight-bold");
+    h3PositionElement.classList.add("mb-1");
+
+    const positionText = document.createTextNode(_experience.position);
+    h3PositionElement.append(positionText);
+
+    const divCompanyElement = document.createElement("div");
+    divCompanyElement.classList.add("resume-company-name");
+    divCompanyElement.classList.add("ml-auto");
+
+    const companyText = document.createTextNode(_experience.company);
+    divCompanyElement.append(companyText);
+
+    const divTimeElement = document.createElement("div");
+    divTimeElement.classList.add("resume-position-time");
+
+    const timeText = document.createTextNode(`${_experience.time.start} - ${_experience.time.end}`);
+    divTimeElement.append(timeText);
+
+    divPositionElement.appendChild(h3PositionElement);
+    divPositionElement.appendChild(divCompanyElement);
+    divHeaderElement.appendChild(divPositionElement);
+    divHeaderElement.appendChild(divTimeElement);
+
+    return divHeaderElement;
+  };
+
+  const createDivContentElement = (experience) => {
+    const _experience = {};
+    Object.assign(_experience, experience);
+
+    const divContentElement = document.createElement("div");
+    divContentElement.classList.add("resume-timeline-item-desc");
+
+    const pDescription = document.createElement("p");
+    const descriptionExperienceText = document.createTextNode(_experience.description);
+    pDescription.append(descriptionExperienceText);
+
+    const h4Element = document.createElement("h4");
+    h4Element.classList.add("resume-timeline-item-desc-heading");
+    h4Element.classList.add("font-weight-bold");
+
+    const descriptionTechText = document.createTextNode("Technologies used:");
+    h4Element.append(descriptionTechText);
+
+    const ulElement = document.createElement("ul");
+    ulElement.classList.add("list-inline");
+
+    _experience.technologies.forEach((tech) => {
+      const liElement = document.createElement("li");
+      liElement.classList.add("list-inline-item");
+
+      const spanElement = document.createElement("span");
+      spanElement.classList.add("badge");
+      spanElement.classList.add("badge-primary");
+      spanElement.classList.add("badge-pill");
+
+      const technologyText = document.createTextNode(tech);
+      spanElement.append(technologyText);
+
+      liElement.appendChild(spanElement);
+      ulElement.appendChild(liElement);
+    });
+
+    divContentElement.appendChild(pDescription);
+    divContentElement.appendChild(h4Element);
+    divContentElement.appendChild(ulElement);
+
+    return divContentElement;
+  };
+
+  const appendElementsInSection = () => {
+    _resume.experience.reverse().forEach((exp) => {
+      const articleElement = createArticleElement();
+      const divHeaderElement = createDivHeaderElement(exp);
+      const divContentElement = createDivContentElement(exp);
+
+      articleElement.appendChild(divHeaderElement);
+      articleElement.appendChild(divContentElement);
+      divElement.appendChild(articleElement);
+    });
+  };
+
+  return { appendElementsInSection };
+};
+
 const generatePortfolio = () => {
   getGitHubPublicData("jvidaln").then((repositories) => {
     const divportfolio = document.querySelector("div.portfolio-section-content");
@@ -151,6 +263,7 @@ const generatePortfolio = () => {
 const init = () => {
   generatePortfolio();
   createResumeSection(data).appendElementsInSection();
+  createExperienceSection(data).appendElementsInSection();
 };
 
 init();
