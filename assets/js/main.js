@@ -68,8 +68,7 @@ const createPortfolioElement = (repositories) => {
 
   const createLinkElement = (repositoryUrl) => {
     const linkElement = document.createElement("a");
-    linkElement.classList.add("btn");
-    linkElement.classList.add("card_btn");
+    linkElement.classList.add("btn", "card_btn");
     linkElement.setAttribute("href", repositoryUrl);
     linkElement.setAttribute("target", "_blank");
 
@@ -105,6 +104,76 @@ const createPortfolioElement = (repositories) => {
   };
 
   return { createUlElement };
+};
+
+const createPrimaryInfoSection = (data) => {
+  const _resume = {};
+  Object.assign(_resume, data);
+
+  const divPrymaryElement = document.querySelector("div.primary-info");
+
+  const createH1NameElement = () => {
+    const h1Element = document.createElement("h1");
+    h1Element.classList.add("name", "mt-0", "mb-1", "text-white", "text-uppercase");
+
+    const h1Text = document.createTextNode(_resume.name);
+    h1Element.append(h1Text);
+
+    return h1Element;
+  };
+
+  const createDivCurrentPositionElement = () => {
+    const divElement = document.createElement("div");
+    divElement.classList.add("title", "mb-3");
+
+    const divText = document.createTextNode(_resume.currentPosition);
+    divElement.append(divText);
+
+    return divElement;
+  };
+
+  const createUlContactElement = () => {
+    // <ul class="list-unstyled">
+    //   <li class="mb-2">
+    //     <a href="mailto:j.vidalnunes@gmail.com"
+    //     ><i class="far fa-envelope fa-fw mr-2" data-fa-transform="grow-3"></i
+    //     >j.vidalnunes@gmail.com</a
+    //     >
+    //   </li>
+    // </ul>
+    const ulElement = document.createElement("ul");
+    ulElement.classList.add("list-unstyled");
+
+    const liElement = document.createElement("li");
+    liElement.classList.add("mb-2");
+
+    const linkElement = document.createElement("a");
+    linkElement.href = `mailto:${_resume.contact.email}`;
+
+    const iElement = document.createElement("i");
+    iElement.classList.add("far", "fa-envelope", "fa-fw", "mr-2");
+    iElement.setAttribute("data-fa-transform", "grow-3");
+
+    const emailText = document.createTextNode(_resume.contact.email);
+
+    linkElement.appendChild(iElement);
+    linkElement.append(emailText);
+    liElement.appendChild(linkElement);
+    ulElement.appendChild(liElement);
+
+    return ulElement;
+  };
+
+  const appendElementsInSection = () => {
+    const h1NameElement = createH1NameElement();
+    const divCurrentPositionElement = createDivCurrentPositionElement();
+    const ulContactElement = createUlContactElement();
+    divPrymaryElement.appendChild(h1NameElement);
+    divPrymaryElement.appendChild(divCurrentPositionElement);
+    divPrymaryElement.appendChild(ulContactElement);
+  };
+
+  return { appendElementsInSection };
 };
 
 const createResumeSection = (data) => {
@@ -145,9 +214,7 @@ const createExperienceSection = (data) => {
   const createArticleElement = () => {
     //< article class="resume-timeline-item position-relative pb-5" >
     const articleElement = document.createElement("article");
-    articleElement.classList.add("resume-timeline-item");
-    articleElement.classList.add("position-relative");
-    articleElement.classList.add("pb-5");
+    articleElement.classList.add("resume-timeline-item", "position-relative", "pb-5");
 
     return articleElement;
   };
@@ -156,25 +223,19 @@ const createExperienceSection = (data) => {
     const _experience = {};
     Object.assign(_experience, experience);
     const divHeaderElement = document.createElement("div");
-    divHeaderElement.classList.add("resume-timeline-item-header");
-    divHeaderElement.classList.add("mb-2");
+    divHeaderElement.classList.add("resume-timeline-item-header", "mb-2");
 
     const divPositionElement = document.createElement("div");
-    divPositionElement.classList.add("d-flex");
-    divPositionElement.classList.add("flex-column");
-    divPositionElement.classList.add("flex-md-row");
+    divPositionElement.classList.add("d-flex", "flex-column", "flex-md-row");
 
     const h3PositionElement = document.createElement("h3");
-    h3PositionElement.classList.add("resume-position-title");
-    h3PositionElement.classList.add("font-weight-bold");
-    h3PositionElement.classList.add("mb-1");
+    h3PositionElement.classList.add("resume-position-title", "font-weight-bold", "mb-1");
 
     const positionText = document.createTextNode(_experience.position);
     h3PositionElement.append(positionText);
 
     const divCompanyElement = document.createElement("div");
-    divCompanyElement.classList.add("resume-company-name");
-    divCompanyElement.classList.add("ml-auto");
+    divCompanyElement.classList.add("resume-company-name", "ml-auto");
 
     const companyText = document.createTextNode(_experience.company);
     divCompanyElement.append(companyText);
@@ -205,8 +266,7 @@ const createExperienceSection = (data) => {
     pDescription.append(descriptionExperienceText);
 
     const h4Element = document.createElement("h4");
-    h4Element.classList.add("resume-timeline-item-desc-heading");
-    h4Element.classList.add("font-weight-bold");
+    h4Element.classList.add("resume-timeline-item-desc-heading", "font-weight-bold");
 
     const descriptionTechText = document.createTextNode("Technologies used:");
     h4Element.append(descriptionTechText);
@@ -219,9 +279,7 @@ const createExperienceSection = (data) => {
       liElement.classList.add("list-inline-item");
 
       const spanElement = document.createElement("span");
-      spanElement.classList.add("badge");
-      spanElement.classList.add("badge-primary");
-      spanElement.classList.add("badge-pill");
+      spanElement.classList.add("badge", "badge-primary", "badge-pill");
 
       const technologyText = document.createTextNode(tech);
       spanElement.append(technologyText);
@@ -262,6 +320,7 @@ const generatePortfolio = () => {
 
 const init = () => {
   generatePortfolio();
+  createPrimaryInfoSection(data).appendElementsInSection();
   createResumeSection(data).appendElementsInSection();
   createExperienceSection(data).appendElementsInSection();
 };
