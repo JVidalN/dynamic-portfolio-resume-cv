@@ -8,75 +8,149 @@ const getGitHubPublicData = (user) => {
     .then((response) => response.json())
     .then(
       (result) =>
-        ({
-          name: result.name,
-          description: result.description,
-          html_url: result.html_url,
-        } = result)
+        ({ name: result.name, description: result.description, html_url: result.html_url } = result)
     )
     .catch((error) => console.log("error", error));
 };
 
 const createPortfolioElement = (repositories) => {
-  let ulElement = document.createElement("ul");
-  ulElement.classList.add("cards");
-  repositories.forEach((repository) => {
-    let liElement = document.createElement("li");
+  const _repositories = repositories;
+
+  const createLiElement = () => {
+    const liElement = document.createElement("li");
     liElement.classList.add("cards_item");
+    return liElement;
+  };
 
-    let divCardElement = document.createElement("div");
+  const createDivCardElement = () => {
+    const divCardElement = document.createElement("div");
     divCardElement.classList.add("card");
+    return divCardElement;
+  };
 
-    let divCardImgElement = document.createElement("div");
+  const createCardImgElement = () => {
+    const imgElement = document.createElement("img");
+    imgElement.setAttribute("src", "../assets/images/portfolio-github.png");
+
+    const divCardImgElement = document.createElement("div");
     divCardImgElement.classList.add("card_image");
 
-    let imgElement = document.createElement("img");
-    imgElement.setAttribute("src", "../assets/images/portfolio-github.png");
     divCardImgElement.appendChild(imgElement);
 
-    let divCardContentElement = document.createElement("div");
-    divCardContentElement.classList.add("card_content");
+    return divCardImgElement;
+  };
 
-    let titleElement = document.createElement("h2");
+  const createDivCardContentElement = () => {
+    const divCardContentElement = document.createElement("div");
+    divCardContentElement.classList.add("card_content");
+    return divCardContentElement;
+  };
+
+  const createTitleElement = (repositoryName) => {
+    const titleElement = document.createElement("h2");
     titleElement.classList.add("card_title");
 
-    let titleText = document.createTextNode(repository.name);
+    const titleText = document.createTextNode(repositoryName);
     titleElement.appendChild(titleText);
 
-    let descriptionElement = document.createElement("p");
+    return titleElement;
+  };
+
+  const createDescriptionElement = (repositoryDescription) => {
+    const descriptionElement = document.createElement("p");
     descriptionElement.classList.add("card_text");
 
-    let descriptionText = document.createTextNode(repository.description);
+    const descriptionText = document.createTextNode(repositoryDescription);
     descriptionElement.appendChild(descriptionText);
 
-    let linkElement = document.createElement("a");
+    return descriptionElement;
+  };
+
+  const createLinkElement = (repositoryUrl) => {
+    const linkElement = document.createElement("a");
     linkElement.classList.add("btn");
     linkElement.classList.add("card_btn");
-    linkElement.setAttribute("href", repository.html_url);
+    linkElement.setAttribute("href", repositoryUrl);
     linkElement.setAttribute("target", "_blank");
 
-    let linkText = document.createTextNode("Acesse");
+    const linkText = document.createTextNode("Acesse");
     linkElement.appendChild(linkText);
 
-    divCardContentElement.appendChild(titleElement);
-    divCardContentElement.appendChild(descriptionElement);
-    divCardContentElement.appendChild(linkElement);
-    divCardElement.appendChild(divCardImgElement);
-    divCardElement.appendChild(divCardContentElement);
-    liElement.appendChild(divCardElement);
-    ulElement.appendChild(liElement);
-  });
-  return ulElement;
+    return linkElement;
+  };
+
+  const createUlElement = () => {
+    const ulElement = document.createElement("ul");
+    ulElement.classList.add("cards");
+
+    _repositories.forEach((repository) => {
+      const liElement = createLiElement();
+      const divCardElement = createDivCardElement();
+      const divCardImgElement = createCardImgElement();
+      const divCardContentElement = createDivCardContentElement();
+      const titleElement = createTitleElement(repository.name);
+      const descriptionElement = createDescriptionElement(repository.description);
+      const linkElement = createLinkElement(repository.html_url);
+
+      divCardContentElement.appendChild(titleElement);
+      divCardContentElement.appendChild(descriptionElement);
+      divCardContentElement.appendChild(linkElement);
+      divCardElement.appendChild(divCardImgElement);
+      divCardElement.appendChild(divCardContentElement);
+      liElement.appendChild(divCardElement);
+      ulElement.appendChild(liElement);
+    });
+
+    return ulElement;
+  };
+
+  return { createUlElement };
+};
+
+const createResumeSection = (data) => {
+  const _resume = {};
+  Object.assign(_resume, data);
+
+  const sectionElement = document.querySelector("section.resume-section.summary-section.mb-5");
+
+  const createDivResumeContent = () => {
+    // <div class="resume-section-content">
+    //   <p class="mb-0">
+    //   </p>
+    // </div>
+    const divResumeContent = document.createElement("div");
+    divResumeContent.classList.add("resume-section-content");
+
+    const pElement = document.createElement("p");
+    pElement.classList.add("mb-0");
+
+    const pTextElement = document.createTextNode(_resume.about);
+    pElement.append(pTextElement);
+
+    divResumeContent.appendChild(pElement);
+
+    return divResumeContent;
+  };
+
+  const appendElementsInSection = () => {
+    const divResumeElement = createDivResumeContent();
+    sectionElement.appendChild(divResumeElement);
+  };
+
+  return { appendElementsInSection };
 };
 
 const generatePortfolio = () => {
   getGitHubPublicData("jvidaln").then((repositories) => {
-    let divPortifolio = document.querySelector(
-      "div.portifolio-section-content"
-    );
-    let repositoryElement = createPortfolioElement(repositories);
-    divPortifolio.appendChild(repositoryElement);
+    const divportfolio = document.querySelector("div.portfolio-section-content");
+    const repositoryElement = createPortfolioElement(repositories).createUlElement();
+    divportfolio.appendChild(repositoryElement);
   });
 };
 
-generatePortfolio();
+const init = () => {
+  generatePortfolio();
+  createResumeSection(data).appendElementsInSection();
+};
+
+init();
