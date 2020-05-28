@@ -133,14 +133,6 @@ const createPrimaryInfoSection = (data) => {
   };
 
   const createUlContactElement = () => {
-    // <ul class="list-unstyled">
-    //   <li class="mb-2">
-    //     <a href="mailto:j.vidalnunes@gmail.com"
-    //     ><i class="far fa-envelope fa-fw mr-2" data-fa-transform="grow-3"></i
-    //     >j.vidalnunes@gmail.com</a
-    //     >
-    //   </li>
-    // </ul>
     const ulElement = document.createElement("ul");
     ulElement.classList.add("list-unstyled");
 
