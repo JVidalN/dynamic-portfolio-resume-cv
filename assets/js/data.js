@@ -164,12 +164,12 @@ data = {
     { language: "English", proficiency: "Intermediate" },
     { language: "Español", proficiency: "Principiante" },
   ],
-  social: {
-    linkedin: "http://www.linkedin.com/in/jvidalnunes",
-    github: "http://github.com/JVidalN",
-    website: "http://jvidaln.github.io",
-    twitter: "http://twitter.com/JVidalN",
-    facebook: "http://www.facebook.com/JVidalNunes",
-    instagram: "http://www.instagram.com/jvidaln",
-  },
+  social: [
+    { name: "linkedin", url: "http://www.linkedin.com/in/jvidalnunes" },
+    { name: "github", url: "http://github.com/JVidalN" },
+    { name: "website", url: "http://jvidaln.github.io" },
+    { name: "twitter", url: "http://twitter.com/JVidalN" },
+    // { name: "facebook", url: "http://www.facebook.com/JVidalNunes" },
+    // { name: "instagram", url: "http://www.instagram.com/jvidaln" },
+  ],
 };

@@ -110,7 +110,7 @@ const createPrimaryInfoSection = (data) => {
   const _resume = {};
   Object.assign(_resume, data);
 
-  const divPrymaryElement = document.querySelector("div.primary-info");
+  const divPrimaryElement = document.querySelector("div.primary-info");
 
   const createH1NameElement = () => {
     const h1Element = document.createElement("h1");
@@ -160,12 +160,64 @@ const createPrimaryInfoSection = (data) => {
     const h1NameElement = createH1NameElement();
     const divCurrentPositionElement = createDivCurrentPositionElement();
     const ulContactElement = createUlContactElement();
-    divPrymaryElement.appendChild(h1NameElement);
-    divPrymaryElement.appendChild(divCurrentPositionElement);
-    divPrymaryElement.appendChild(ulContactElement);
+    divPrimaryElement.appendChild(h1NameElement);
+    divPrimaryElement.appendChild(divCurrentPositionElement);
+    divPrimaryElement.appendChild(ulContactElement);
   };
 
   return { appendElementsInSection };
+};
+
+const createSecondaryInfoSection = (data) => {
+  const _resume = {};
+  Object.assign(_resume, data);
+
+  const divSecondaryElement = document.querySelector("div.secondary-info");
+
+  const createUlElement = () => {
+    const ulElement = document.createElement("ul");
+    ulElement.classList.add("resume-social", "list-unstyled");
+
+    return ulElement;
+  };
+
+  const createLiElement = (mSocial) => {
+    const liElement = document.createElement("li");
+    liElement.classList.add("mb-3");
+
+    const linkElement = document.createElement("a");
+    linkElement.setAttribute("href", mSocial.url);
+    linkElement.setAttribute("target", "_blank");
+
+    const spanElement = document.createElement("span");
+    spanElement.classList.add("fa-container", "text-center", "mr-2");
+
+    const iElement = document.createElement("i");
+    mSocial.name === "website"
+      ? iElement.classList.add("fas", `fa-globe`)
+      : iElement.classList.add("fab", `fa-${mSocial.name}`, "fa-fw");
+
+    let pattern = /http(s?):\/\/(www.)?/g;
+    const socialText = document.createTextNode(mSocial.url.replace(pattern, ""));
+
+    spanElement.appendChild(iElement);
+    linkElement.appendChild(spanElement);
+    linkElement.append(socialText);
+    liElement.appendChild(linkElement);
+
+    return liElement;
+  };
+
+  const appendElementsInDiv = () => {
+    const ulSocialElement = createUlElement();
+    _resume.social.forEach((mSocial) => {
+      const liElement = createLiElement(mSocial);
+      ulSocialElement.appendChild(liElement);
+    });
+    divSecondaryElement.appendChild(ulSocialElement);
+  };
+
+  return { appendElementsInDiv };
 };
 
 const createResumeSection = (data) => {
@@ -256,6 +308,7 @@ const createExperienceSection = (data) => {
     const pDescription = document.createElement("p");
     const descriptionExperienceText = document.createTextNode(_experience.description);
     pDescription.append(descriptionExperienceText);
+    pDescription.innerHTML = pDescription.innerText.split(".").join(".</br>");
 
     const h4Element = document.createElement("h4");
     h4Element.classList.add("resume-timeline-item-desc-heading", "font-weight-bold");
@@ -311,10 +364,14 @@ const generatePortfolio = () => {
 };
 
 const init = () => {
+  const _resume = {};
+  Object.assign(_resume, data);
+
+  createPrimaryInfoSection(_resume).appendElementsInSection();
+  createSecondaryInfoSection(_resume).appendElementsInDiv();
+  createResumeSection(_resume).appendElementsInSection();
+  createExperienceSection(_resume).appendElementsInSection();
   generatePortfolio();
-  createPrimaryInfoSection(data).appendElementsInSection();
-  createResumeSection(data).appendElementsInSection();
-  createExperienceSection(data).appendElementsInSection();
 };
 
 init();
