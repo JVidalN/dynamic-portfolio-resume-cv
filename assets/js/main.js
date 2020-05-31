@@ -355,6 +355,150 @@ const createExperienceSection = (data) => {
   return { appendElementsInSection };
 };
 
+const createSkillSection = (data) => {
+  const _resume = {};
+  Object.assign(_resume, data);
+
+  const divElement = document.querySelector("div.resume-section-content.skill-section");
+
+  const createDivFrontEndSkills = (skills) => {
+    const divSkill = document.createElement("div");
+    divSkill.classList.add("resume-skill-item");
+
+    const h4TitleElement = document.createElement("h4");
+    h4TitleElement.classList.add("resume-skills-cat", "font-weight-bold");
+
+    const titleText = document.createTextNode("Frontend");
+    h4TitleElement.append(titleText);
+
+    const ulElement = document.createElement("ul");
+    ulElement.classList.add("list-unstyled", "mb-4");
+
+    skills.forEach((skill) => {
+      const liElement = document.createElement("li");
+      liElement.classList.add("mb-2");
+
+      const divNameSkill = document.createElement("div");
+      divNameSkill.classList.add("resume-skill-name");
+
+      const skillNameText = document.createTextNode(skill.name);
+      divNameSkill.append(skillNameText);
+
+      const divProgress = document.createElement("div");
+      divProgress.classList.add("progress", "resume-progress");
+
+      const divProgressBar = document.createElement("div");
+      divProgressBar.classList.add("progress-bar", "theme-progress-bar-dark");
+      divProgressBar.setAttribute("role", "progressbar");
+      divProgressBar.setAttribute("style", `width: ${skill.proficiency}`);
+      divProgressBar.setAttribute("aria-valuenow", "25");
+      divProgressBar.setAttribute("aria-valuemin", "0");
+      divProgressBar.setAttribute("aria-valuemax", "100");
+
+      divProgress.appendChild(divProgressBar);
+      liElement.appendChild(divNameSkill);
+      liElement.appendChild(divProgress);
+      ulElement.appendChild(liElement);
+    });
+
+    divSkill.appendChild(h4TitleElement);
+    divSkill.appendChild(ulElement);
+
+    return divSkill;
+  };
+
+  const createDivBackEndSkills = (skills) => {
+    const divSkill = document.createElement("div");
+    divSkill.classList.add("resume-skill-item");
+
+    const h4TitleElement = document.createElement("h4");
+    h4TitleElement.classList.add("resume-skills-cat", "font-weight-bold");
+
+    const titleText = document.createTextNode("Backend");
+    h4TitleElement.append(titleText);
+
+    const ulElement = document.createElement("ul");
+    ulElement.classList.add("list-unstyled", "mb-4");
+
+    skills.forEach((skill) => {
+      const liElement = document.createElement("li");
+      liElement.classList.add("mb-2");
+
+      const divNameSkill = document.createElement("div");
+      divNameSkill.classList.add("resume-skill-name");
+
+      const skillNameText = document.createTextNode(skill.name);
+      divNameSkill.append(skillNameText);
+
+      const divProgress = document.createElement("div");
+      divProgress.classList.add("progress", "resume-progress");
+
+      const divProgressBar = document.createElement("div");
+      divProgressBar.classList.add("progress-bar", "theme-progress-bar-dark");
+      divProgressBar.setAttribute("role", "progressbar");
+      divProgressBar.setAttribute("style", `width: ${skill.proficiency}`);
+      divProgressBar.setAttribute("aria-valuenow", "25");
+      divProgressBar.setAttribute("aria-valuemin", "0");
+      divProgressBar.setAttribute("aria-valuemax", "100");
+
+      divProgress.appendChild(divProgressBar);
+      liElement.appendChild(divNameSkill);
+      liElement.appendChild(divProgress);
+      ulElement.appendChild(liElement);
+    });
+
+    divSkill.appendChild(h4TitleElement);
+    divSkill.appendChild(ulElement);
+
+    return divSkill;
+  };
+
+  const createDivOtherSkills = (skills) => {
+    const divSkill = document.createElement("div");
+    divSkill.classList.add("resume-skill-item");
+
+    const h4TitleElement = document.createElement("h4");
+    h4TitleElement.classList.add("resume-skills-cat", "font-weight-bold");
+
+    const titleText = document.createTextNode("Others");
+    h4TitleElement.append(titleText);
+
+    const ulElement = document.createElement("ul");
+    ulElement.classList.add("list-inline");
+
+    skills.forEach((skill) => {
+      const liElement = document.createElement("li");
+      liElement.classList.add("list-inline-item");
+
+      const spanNameSkill = document.createElement("span");
+      spanNameSkill.classList.add("badge", "badge-light");
+
+      const skillNameText = document.createTextNode(skill);
+      spanNameSkill.append(skillNameText);
+
+      liElement.appendChild(spanNameSkill);
+      ulElement.appendChild(liElement);
+    });
+
+    divSkill.appendChild(h4TitleElement);
+    divSkill.appendChild(ulElement);
+
+    return divSkill;
+  };
+
+  const appendElementsInDiv = () => {
+    const divFrontEndSkills = createDivFrontEndSkills(_resume.skills.frontend);
+    const divBackEndSkills = createDivBackEndSkills(_resume.skills.backend);
+    const divOtherSkills = createDivOtherSkills(_resume.skills.others);
+
+    divElement.appendChild(divFrontEndSkills);
+    divElement.appendChild(divBackEndSkills);
+    divElement.appendChild(divOtherSkills);
+  };
+
+  return { appendElementsInDiv };
+};
+
 const generatePortfolio = () => {
   getGitHubPublicData("jvidaln").then((repositories) => {
     const divportfolio = document.querySelector("div.portfolio-section-content");
@@ -371,6 +515,7 @@ const init = () => {
   createSecondaryInfoSection(_resume).appendElementsInDiv();
   createResumeSection(_resume).appendElementsInSection();
   createExperienceSection(_resume).appendElementsInSection();
+  createSkillSection(_resume).appendElementsInDiv();
   generatePortfolio();
 };
 
