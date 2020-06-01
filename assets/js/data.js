@@ -172,4 +172,5 @@ data = {
     // { name: "facebook", url: "http://www.facebook.com/JVidalNunes" },
     // { name: "instagram", url: "http://www.instagram.com/jvidaln" },
   ],
+  urlRepository: "https://api.github.com/users/jvidaln/repos",
 };

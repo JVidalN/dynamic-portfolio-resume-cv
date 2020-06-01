@@ -1,20 +1,26 @@
 "use strict";
 
-const getGitHubPublicData = (user) => {
-  let urlRepository = `https://api.github.com/users/${user}/repos`;
-  return fetch(urlRepository, {
-    method: "GET",
-  })
-    .then((response) => response.json())
-    .then(
-      (result) =>
-        ({ name: result.name, description: result.description, html_url: result.html_url } = result)
-    )
-    .catch((error) => console.log("error", error));
-};
+const createPortfolioElement = (data) => {
+  const _resume = {};
+  Object.assign(_resume, data);
 
-const createPortfolioElement = (repositories) => {
-  const _repositories = repositories;
+  const divPortfolio = document.querySelector("div.portfolio-section-content");
+
+  const getGitHubPublicData = (urlRepository) => {
+    return fetch(urlRepository, {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then(
+        (result) =>
+          ({
+            name: result.name,
+            description: result.description,
+            html_url: result.html_url,
+          } = result)
+      )
+      .catch((error) => console.log("error", error));
+  };
 
   const createLiElement = () => {
     const liElement = document.createElement("li");
@@ -82,28 +88,35 @@ const createPortfolioElement = (repositories) => {
     const ulElement = document.createElement("ul");
     ulElement.classList.add("cards");
 
-    _repositories.forEach((repository) => {
-      const liElement = createLiElement();
-      const divCardElement = createDivCardElement();
-      const divCardImgElement = createCardImgElement();
-      const divCardContentElement = createDivCardContentElement();
-      const titleElement = createTitleElement(repository.name);
-      const descriptionElement = createDescriptionElement(repository.description);
-      const linkElement = createLinkElement(repository.html_url);
-
-      divCardContentElement.appendChild(titleElement);
-      divCardContentElement.appendChild(descriptionElement);
-      divCardContentElement.appendChild(linkElement);
-      divCardElement.appendChild(divCardImgElement);
-      divCardElement.appendChild(divCardContentElement);
-      liElement.appendChild(divCardElement);
-      ulElement.appendChild(liElement);
-    });
-
     return ulElement;
   };
 
-  return { createUlElement };
+  const appendElements = () => {
+    const ulElement = createUlElement();
+    getGitHubPublicData(_resume.urlRepository).then((repositories) => {
+      repositories.forEach((repository) => {
+        const liElement = createLiElement();
+        const divCardElement = createDivCardElement();
+        const divCardImgElement = createCardImgElement();
+        const divCardContentElement = createDivCardContentElement();
+        const titleElement = createTitleElement(repository.name);
+        const descriptionElement = createDescriptionElement(repository.description);
+        const linkElement = createLinkElement(repository.html_url);
+
+        divCardContentElement.appendChild(titleElement);
+        divCardContentElement.appendChild(descriptionElement);
+        divCardContentElement.appendChild(linkElement);
+        divCardElement.appendChild(divCardImgElement);
+        divCardElement.appendChild(divCardContentElement);
+        liElement.appendChild(divCardElement);
+        ulElement.appendChild(liElement);
+      });
+    });
+
+    divPortfolio.appendChild(ulElement);
+  };
+
+  return { appendElements };
 };
 
 const createPrimaryInfoSection = (data) => {
@@ -156,7 +169,7 @@ const createPrimaryInfoSection = (data) => {
     return ulElement;
   };
 
-  const appendElementsInSection = () => {
+  const appendElements = () => {
     const h1NameElement = createH1NameElement();
     const divCurrentPositionElement = createDivCurrentPositionElement();
     const ulContactElement = createUlContactElement();
@@ -165,7 +178,7 @@ const createPrimaryInfoSection = (data) => {
     divPrimaryElement.appendChild(ulContactElement);
   };
 
-  return { appendElementsInSection };
+  return { appendElements };
 };
 
 const createSecondaryInfoSection = (data) => {
@@ -208,7 +221,7 @@ const createSecondaryInfoSection = (data) => {
     return liElement;
   };
 
-  const appendElementsInDiv = () => {
+  const appendElements = () => {
     const ulSocialElement = createUlElement();
     _resume.social.forEach((mSocial) => {
       const liElement = createLiElement(mSocial);
@@ -217,7 +230,7 @@ const createSecondaryInfoSection = (data) => {
     divSecondaryElement.appendChild(ulSocialElement);
   };
 
-  return { appendElementsInDiv };
+  return { appendElements };
 };
 
 const createResumeSection = (data) => {
@@ -241,12 +254,12 @@ const createResumeSection = (data) => {
     return divResumeContent;
   };
 
-  const appendElementsInSection = () => {
+  const appendElements = () => {
     const divResumeElement = createDivResumeContent();
     sectionElement.appendChild(divResumeElement);
   };
 
-  return { appendElementsInSection };
+  return { appendElements };
 };
 
 const createExperienceSection = (data) => {
@@ -340,7 +353,7 @@ const createExperienceSection = (data) => {
     return divContentElement;
   };
 
-  const appendElementsInSection = () => {
+  const appendElements = () => {
     _resume.experience.reverse().forEach((exp) => {
       const articleElement = createArticleElement();
       const divHeaderElement = createDivHeaderElement(exp);
@@ -352,7 +365,7 @@ const createExperienceSection = (data) => {
     });
   };
 
-  return { appendElementsInSection };
+  return { appendElements };
 };
 
 const createSkillSection = (data) => {
@@ -486,7 +499,7 @@ const createSkillSection = (data) => {
     return divSkill;
   };
 
-  const appendElementsInDiv = () => {
+  const appendElements = () => {
     const divFrontEndSkills = createDivFrontEndSkills(_resume.skills.frontend);
     const divBackEndSkills = createDivBackEndSkills(_resume.skills.backend);
     const divOtherSkills = createDivOtherSkills(_resume.skills.others);
@@ -496,7 +509,7 @@ const createSkillSection = (data) => {
     divElement.appendChild(divOtherSkills);
   };
 
-  return { appendElementsInDiv };
+  return { appendElements };
 };
 
 const createEducationSection = (data) => {
@@ -545,7 +558,7 @@ const createEducationSection = (data) => {
     return liElement;
   };
 
-  const appendElementsInDiv = () => {
+  const appendElements = () => {
     const ulElement = createUlElement();
 
     _resume.education.forEach((education) => {
@@ -556,7 +569,7 @@ const createEducationSection = (data) => {
     divElement.appendChild(ulElement);
   };
 
-  return { appendElementsInDiv };
+  return { appendElements };
 };
 
 const createLanguageSection = (data) => {
@@ -594,7 +607,7 @@ const createLanguageSection = (data) => {
     return liElement;
   };
 
-  const appendElementsInDiv = () => {
+  const appendElements = () => {
     const ulElement = createUlElement();
 
     _resume.languages.forEach((language) => {
@@ -605,29 +618,36 @@ const createLanguageSection = (data) => {
     divElement.appendChild(ulElement);
   };
 
-  return { appendElementsInDiv };
+  return { appendElements };
 };
 
-const generatePortfolio = () => {
-  getGitHubPublicData("jvidaln").then((repositories) => {
-    const divportfolio = document.querySelector("div.portfolio-section-content");
-    const repositoryElement = createPortfolioElement(repositories).createUlElement();
-    divportfolio.appendChild(repositoryElement);
-  });
+const createTitle = (data) => {
+  const _resume = {};
+  Object.assign(_resume, data);
+
+  const titleElement = document.querySelector("title");
+
+  const append = () => {
+    const titleText = document.createTextNode(`${_resume.name} | ${_resume.currentPosition}`);
+    titleElement.append(titleText);
+  };
+
+  return { append };
 };
 
 const init = () => {
   const _resume = {};
   Object.assign(_resume, data);
 
-  createPrimaryInfoSection(_resume).appendElementsInSection();
-  createSecondaryInfoSection(_resume).appendElementsInDiv();
-  createResumeSection(_resume).appendElementsInSection();
-  createExperienceSection(_resume).appendElementsInSection();
-  createSkillSection(_resume).appendElementsInDiv();
-  createEducationSection(_resume).appendElementsInDiv();
-  createLanguageSection(_resume).appendElementsInDiv();
-  generatePortfolio();
+  createTitle(_resume);
+  createPrimaryInfoSection(_resume).appendElements();
+  createSecondaryInfoSection(_resume).appendElements();
+  createResumeSection(_resume).appendElements();
+  createExperienceSection(_resume).appendElements();
+  createSkillSection(_resume).appendElements();
+  createEducationSection(_resume).appendElements();
+  createLanguageSection(_resume).appendElements();
+  createPortfolioElement(_resume).appendElements();
 };
 
 init();
