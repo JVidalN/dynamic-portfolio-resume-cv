@@ -627,19 +627,19 @@ const createTitle = (data) => {
 
   const titleElement = document.querySelector("title");
 
-  const append = () => {
+  const appendElements = () => {
     const titleText = document.createTextNode(`${_resume.name} | ${_resume.currentPosition}`);
     titleElement.append(titleText);
   };
 
-  return { append };
+  return { appendElements };
 };
 
 const init = () => {
   const _resume = {};
   Object.assign(_resume, data);
 
-  createTitle(_resume);
+  createTitle(_resume).appendElements();
   createPrimaryInfoSection(_resume).appendElements();
   createSecondaryInfoSection(_resume).appendElements();
   createResumeSection(_resume).appendElements();
