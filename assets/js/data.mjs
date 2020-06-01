@@ -1,4 +1,4 @@
-data = {
+export const data = {
   name: "Jean Vidal Nunes",
   about:
     "Professional with just over 6 years of experience in Information Technology projects, with consolidated knowledge throughout the development life cycle, applying best practices. I am passionate about technology and constantly seek to improve my knowledge with courses, projects and following the main names of technology. So I try to always explore open source solutions to solve the day-to-day development problems.",

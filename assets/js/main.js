@@ -1,5 +1,7 @@
 "use strict";
 
+import { data } from "./data.mjs";
+
 const createPortfolioElement = (data) => {
   const _resume = {};
   Object.assign(_resume, data);
