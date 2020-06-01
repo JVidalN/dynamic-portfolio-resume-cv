@@ -72,7 +72,7 @@ This project is under the MIT license. See the [LICENSE](https://github.com/jvid
 
 ---
 
-Made with ♥ by Jean Vidal :wave: [Get in touch!](https://www.linkedin.com/in/jvidaln/)
+Made with ♥ by Jean Vidal :wave: [Get in touch!](https://www.linkedin.com/in/jvidalnunes/)
 
 [vc]: https://code.visualstudio.com/
 [vceditconfig]: https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig
