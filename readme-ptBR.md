@@ -13,7 +13,7 @@ Para as atualizações eu utilizei os recursos do ECMAScript, tais como: `Use St
 ### Seção de Portfolio
 
 <p align="center">
-  <img src="portfolio-auto-update.gif">
+  <img src="assets/github/portfolio-auto-update.gif">
 </p>
 
 Os dados foram obtidos da própria API pública do GitHub `https://api.github.com/users/${user}/repos`.

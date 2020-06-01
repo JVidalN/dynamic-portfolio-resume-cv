@@ -13,7 +13,7 @@ For the updates i used features of ECMAScript like: `Use Strict`, `Dynamic Impor
 ### Portfolio Section
 
 <p align="center">
-  <img src="portfolio-auto-update.gif">
+  <img src="assets/github/portfolio-auto-update.gif">
 </p>
 
 The data is obtained the public API data from github itself `https://api.github.com/users/${user}/repos`.
