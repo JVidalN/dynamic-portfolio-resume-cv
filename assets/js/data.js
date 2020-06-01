@@ -155,14 +155,14 @@ data = {
     {
       instituition: "Universidade do Estado da Bahia - UNEB",
       degree: { initial: "BSc", description: "Bachelor" },
-      course: "Sistemas de Informação",
+      course: "Information Systems",
       time: { start: "2010", end: "2018" },
     },
   ],
   languages: [
-    { language: "Português", proficiency: "Nativo" },
-    { language: "English", proficiency: "Intermediate" },
-    { language: "Español", proficiency: "Principiante" },
+    { name: "Português", proficiency: "Nativo" },
+    { name: "English", proficiency: "Intermediate" },
+    { name: "Español", proficiency: "Principiante" },
   ],
   social: [
     { name: "linkedin", url: "http://www.linkedin.com/in/jvidalnunes" },

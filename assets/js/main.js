@@ -499,6 +499,115 @@ const createSkillSection = (data) => {
   return { appendElementsInDiv };
 };
 
+const createEducationSection = (data) => {
+  const _resume = {};
+  Object.assign(_resume, data);
+
+  const divElement = document.querySelector("div.resume-section-content.education-section");
+
+  const createUlElement = () => {
+    const ulElement = document.createElement("ul");
+    ulElement.classList.add("list-unstyled");
+
+    return ulElement;
+  };
+
+  const createLiElement = (education) => {
+    const liElement = document.createElement("li");
+    liElement.classList.add("mb-2");
+
+    const divEducationDesccription = document.createElement("div");
+    divEducationDesccription.classList.add("resume-degree", "font-weight-bold");
+
+    const educationDescriptionText = document.createTextNode(
+      `${education.degree.initial} in ${education.course}`
+    );
+    divEducationDesccription.append(educationDescriptionText);
+
+    const divEducationInstituition = document.createElement("div");
+    divEducationInstituition.classList.add("resume-degree-org");
+
+    const educationInstituitionText = document.createTextNode(education.instituition);
+    divEducationInstituition.append(educationInstituitionText);
+
+    const divEducationTime = document.createElement("div");
+    divEducationTime.classList.add("resume-degree-time");
+
+    const educationTimeText = document.createTextNode(
+      `${education.time.start} - ${education.time.end}`
+    );
+    divEducationTime.append(educationTimeText);
+
+    liElement.appendChild(divEducationDesccription);
+    liElement.appendChild(divEducationInstituition);
+    liElement.appendChild(divEducationTime);
+
+    return liElement;
+  };
+
+  const appendElementsInDiv = () => {
+    const ulElement = createUlElement();
+
+    _resume.education.forEach((education) => {
+      const liElement = createLiElement(education);
+      ulElement.appendChild(liElement);
+    });
+
+    divElement.appendChild(ulElement);
+  };
+
+  return { appendElementsInDiv };
+};
+
+const createLanguageSection = (data) => {
+  const _resume = {};
+  Object.assign(_resume, data);
+
+  const divElement = document.querySelector("div.resume-section-content.language-section");
+
+  const createUlElement = () => {
+    const ulElement = document.createElement("ul");
+    ulElement.classList.add("list-unstyled", "resume-lang-list");
+
+    return ulElement;
+  };
+
+  const createLiElement = (language) => {
+    const liElement = document.createElement("li");
+    liElement.classList.add("mb-2");
+
+    const spanLanguageDesccription = document.createElement("span");
+    spanLanguageDesccription.classList.add("resume-lang-name", "font-weight-bold");
+
+    const languageDescriptionText = document.createTextNode(language.name);
+    spanLanguageDesccription.append(languageDescriptionText);
+
+    const smallLanguageProficiency = document.createElement("small");
+    smallLanguageProficiency.classList.add("text-muted", "font-weight-normal");
+
+    const languageProficiencyText = document.createTextNode(`(${language.proficiency})`);
+    smallLanguageProficiency.append(languageProficiencyText);
+
+    liElement.appendChild(spanLanguageDesccription);
+    liElement.appendChild(smallLanguageProficiency);
+
+    return liElement;
+  };
+
+  const appendElementsInDiv = () => {
+    const ulElement = createUlElement();
+
+    _resume.languages.forEach((language) => {
+      const liElement = createLiElement(language);
+      ulElement.appendChild(liElement);
+    });
+
+    divElement.appendChild(ulElement);
+  };
+
+  return { appendElementsInDiv };
+};
+
 const generatePortfolio = () => {
   getGitHubPublicData("jvidaln").then((repositories) => {
     const divportfolio = document.querySelector("div.portfolio-section-content");
@@ -516,6 +625,8 @@ const init = () => {
   createResumeSection(_resume).appendElementsInSection();
   createExperienceSection(_resume).appendElementsInSection();
   createSkillSection(_resume).appendElementsInDiv();
+  createEducationSection(_resume).appendElementsInDiv();
+  createLanguageSection(_resume).appendElementsInDiv();
   generatePortfolio();
 };
 
