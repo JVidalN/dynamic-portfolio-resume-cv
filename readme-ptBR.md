@@ -14,9 +14,9 @@
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/jvidaln/jvidaln.github.io.svg">
   
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/jvidaln/jvidaln.github.io.svg">
-  
-  <a href="https://www.codacy.com/app/jvidaln/jvidaln.github.io?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jvidaln/jvidaln.github.io&amp;utm_campaign=Badge_Grade">
-    <img alt="Codacy grade" src="https://img.shields.io/codacy/grade/eac67ca345934f4c8e4435a8606e7baa.svg">
+    
+  <a href="https://app.codacy.com/manual/JVidalN/jvidaln.github.io?utm_source=github.com&utm_medium=referral&utm_content=JVidalN/jvidaln.github.io&utm_campaign=Badge_Grade_Dashboard">
+    <img alt="Codacy grade" src="https://img.shields.io/codacy/grade/fcc1e1acfa054ea0b4887e1d0a51336a.svg">
   </a>
   
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/jvidaln/jvidaln.github.io.svg">
