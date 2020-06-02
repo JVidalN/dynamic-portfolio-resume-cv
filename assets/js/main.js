@@ -21,7 +21,7 @@ const createPortfolioElement = (data) => {
             html_url: result.html_url,
           } = result)
       )
-      .catch((error) => console.log("error", error));
+      .catch((error) => {});
   };
 
   const createLiElement = () => {
@@ -209,7 +209,7 @@ const createSecondaryInfoSection = (data) => {
 
     const iElement = document.createElement("i");
     mSocial.name === "website"
-      ? iElement.classList.add("fas", `fa-globe`)
+      ? iElement.classList.add("fas", "fa-globe")
       : iElement.classList.add("fab", `fa-${mSocial.name}`, "fa-fw");
 
     let pattern = /http(s?):\/\/(www.)?/g;
@@ -323,7 +323,7 @@ const createExperienceSection = (data) => {
     const pDescription = document.createElement("p");
     const descriptionExperienceText = document.createTextNode(_experience.description);
     pDescription.append(descriptionExperienceText);
-    pDescription.innerHTML = pDescription.innerText.split(".").join(".</br>");
+    pDescription.innerHTML = pDescription.innerText.split("I work").join("</br> I work");
 
     const h4Element = document.createElement("h4");
     h4Element.classList.add("resume-timeline-item-desc-heading", "font-weight-bold");
