@@ -28,7 +28,7 @@
     <img alt="Repository issues" src="https://img.shields.io/github/issues/jvidaln/jvidaln.github.io.svg">
   </a>
   
-  <img alt="GitHub" src="https://img.shields.io/github/license/jvidaln/jvidaln.github.io.svg"> 
+  <img alt="GitHub" src="https://img.shields.io/github/license/jvidaln/jvidaln.github.io">
 </p>
 
 <p align="center">
