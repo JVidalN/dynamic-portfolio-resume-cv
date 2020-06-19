@@ -38,7 +38,7 @@ const createPortfolioElement = (data) => {
 
   const createCardImgElement = () => {
     const imgElement = document.createElement('img');
-    imgElement.setAttribute('src', '../assets/images/portfolio-github.png');
+    imgElement.setAttribute('src', 'assets/images/portfolio-github.png');
 
     const divCardImgElement = document.createElement('div');
     divCardImgElement.classList.add('card_image');
