@@ -1,16 +1,16 @@
-"use strict";
+'use strict';
 
-import { data } from "./data.mjs";
+import { data } from './data.mjs';
 
 const createPortfolioElement = (data) => {
   const _resume = {};
   Object.assign(_resume, data);
 
-  const divPortfolio = document.querySelector("div.portfolio-section-content");
+  const divPortfolio = document.querySelector('div.portfolio-section-content');
 
   const getGitHubPublicData = (urlRepository) => {
     return fetch(urlRepository, {
-      method: "GET",
+      method: 'GET',
     })
       .then((response) => response.json())
       .then(
@@ -25,23 +25,23 @@ const createPortfolioElement = (data) => {
   };
 
   const createLiElement = () => {
-    const liElement = document.createElement("li");
-    liElement.classList.add("cards_item");
+    const liElement = document.createElement('li');
+    liElement.classList.add('cards_item');
     return liElement;
   };
 
   const createDivCardElement = () => {
-    const divCardElement = document.createElement("div");
-    divCardElement.classList.add("card");
+    const divCardElement = document.createElement('div');
+    divCardElement.classList.add('card');
     return divCardElement;
   };
 
   const createCardImgElement = () => {
-    const imgElement = document.createElement("img");
-    imgElement.setAttribute("src", "../assets/images/portfolio-github.png");
+    const imgElement = document.createElement('img');
+    imgElement.setAttribute('src', '../assets/images/portfolio-github.png');
 
-    const divCardImgElement = document.createElement("div");
-    divCardImgElement.classList.add("card_image");
+    const divCardImgElement = document.createElement('div');
+    divCardImgElement.classList.add('card_image');
 
     divCardImgElement.appendChild(imgElement);
 
@@ -49,14 +49,14 @@ const createPortfolioElement = (data) => {
   };
 
   const createDivCardContentElement = () => {
-    const divCardContentElement = document.createElement("div");
-    divCardContentElement.classList.add("card_content");
+    const divCardContentElement = document.createElement('div');
+    divCardContentElement.classList.add('card_content');
     return divCardContentElement;
   };
 
   const createTitleElement = (repositoryName) => {
-    const titleElement = document.createElement("h2");
-    titleElement.classList.add("card_title");
+    const titleElement = document.createElement('h2');
+    titleElement.classList.add('card_title');
 
     const titleText = document.createTextNode(repositoryName);
     titleElement.appendChild(titleText);
@@ -65,8 +65,8 @@ const createPortfolioElement = (data) => {
   };
 
   const createDescriptionElement = (repositoryDescription) => {
-    const descriptionElement = document.createElement("p");
-    descriptionElement.classList.add("card_text");
+    const descriptionElement = document.createElement('p');
+    descriptionElement.classList.add('card_text');
 
     const descriptionText = document.createTextNode(repositoryDescription);
     descriptionElement.appendChild(descriptionText);
@@ -75,20 +75,20 @@ const createPortfolioElement = (data) => {
   };
 
   const createLinkElement = (repositoryUrl) => {
-    const linkElement = document.createElement("a");
-    linkElement.classList.add("btn", "card_btn");
-    linkElement.setAttribute("href", repositoryUrl);
-    linkElement.setAttribute("target", "_blank");
+    const linkElement = document.createElement('a');
+    linkElement.classList.add('btn', 'card_btn');
+    linkElement.setAttribute('href', repositoryUrl);
+    linkElement.setAttribute('target', '_blank');
 
-    const linkText = document.createTextNode("Acesse");
+    const linkText = document.createTextNode('Acesse');
     linkElement.appendChild(linkText);
 
     return linkElement;
   };
 
   const createUlElement = () => {
-    const ulElement = document.createElement("ul");
-    ulElement.classList.add("cards");
+    const ulElement = document.createElement('ul');
+    ulElement.classList.add('cards');
 
     return ulElement;
   };
@@ -125,11 +125,11 @@ const createPrimaryInfoSection = (data) => {
   const _resume = {};
   Object.assign(_resume, data);
 
-  const divPrimaryElement = document.querySelector("div.primary-info");
+  const divPrimaryElement = document.querySelector('div.primary-info');
 
   const createH1NameElement = () => {
-    const h1Element = document.createElement("h1");
-    h1Element.classList.add("name", "mt-0", "mb-1", "text-white", "text-uppercase");
+    const h1Element = document.createElement('h1');
+    h1Element.classList.add('name', 'mt-0', 'mb-1', 'text-white', 'text-uppercase');
 
     const h1Text = document.createTextNode(_resume.name);
     h1Element.append(h1Text);
@@ -138,8 +138,8 @@ const createPrimaryInfoSection = (data) => {
   };
 
   const createDivCurrentPositionElement = () => {
-    const divElement = document.createElement("div");
-    divElement.classList.add("title", "mb-3");
+    const divElement = document.createElement('div');
+    divElement.classList.add('title', 'mb-3');
 
     const divText = document.createTextNode(_resume.currentPosition);
     divElement.append(divText);
@@ -148,18 +148,18 @@ const createPrimaryInfoSection = (data) => {
   };
 
   const createUlContactElement = () => {
-    const ulElement = document.createElement("ul");
-    ulElement.classList.add("list-unstyled");
+    const ulElement = document.createElement('ul');
+    ulElement.classList.add('list-unstyled');
 
-    const liElement = document.createElement("li");
-    liElement.classList.add("mb-2");
+    const liElement = document.createElement('li');
+    liElement.classList.add('mb-2');
 
-    const linkElement = document.createElement("a");
+    const linkElement = document.createElement('a');
     linkElement.href = `mailto:${_resume.contact.email}`;
 
-    const iElement = document.createElement("i");
-    iElement.classList.add("far", "fa-envelope", "fa-fw", "mr-2");
-    iElement.setAttribute("data-fa-transform", "grow-3");
+    const iElement = document.createElement('i');
+    iElement.classList.add('far', 'fa-envelope', 'fa-fw', 'mr-2');
+    iElement.setAttribute('data-fa-transform', 'grow-3');
 
     const emailText = document.createTextNode(_resume.contact.email);
 
@@ -187,33 +187,33 @@ const createSecondaryInfoSection = (data) => {
   const _resume = {};
   Object.assign(_resume, data);
 
-  const divSecondaryElement = document.querySelector("div.secondary-info");
+  const divSecondaryElement = document.querySelector('div.secondary-info');
 
   const createUlElement = () => {
-    const ulElement = document.createElement("ul");
-    ulElement.classList.add("resume-social", "list-unstyled");
+    const ulElement = document.createElement('ul');
+    ulElement.classList.add('resume-social', 'list-unstyled');
 
     return ulElement;
   };
 
   const createLiElement = (mSocial) => {
-    const liElement = document.createElement("li");
-    liElement.classList.add("mb-3");
+    const liElement = document.createElement('li');
+    liElement.classList.add('mb-3');
 
-    const linkElement = document.createElement("a");
-    linkElement.setAttribute("href", mSocial.url);
-    linkElement.setAttribute("target", "_blank");
+    const linkElement = document.createElement('a');
+    linkElement.setAttribute('href', mSocial.url);
+    linkElement.setAttribute('target', '_blank');
 
-    const spanElement = document.createElement("span");
-    spanElement.classList.add("fa-container", "text-center", "mr-2");
+    const spanElement = document.createElement('span');
+    spanElement.classList.add('fa-container', 'text-center', 'mr-2');
 
-    const iElement = document.createElement("i");
-    mSocial.name === "website"
-      ? iElement.classList.add("fas", "fa-globe")
-      : iElement.classList.add("fab", `fa-${mSocial.name}`, "fa-fw");
+    const iElement = document.createElement('i');
+    mSocial.name === 'website'
+      ? iElement.classList.add('fas', 'fa-globe')
+      : iElement.classList.add('fab', `fa-${mSocial.name}`, 'fa-fw');
 
     let pattern = /http(s?):\/\/(www.)?/g;
-    const socialText = document.createTextNode(mSocial.url.replace(pattern, ""));
+    const socialText = document.createTextNode(mSocial.url.replace(pattern, ''));
 
     spanElement.appendChild(iElement);
     linkElement.appendChild(spanElement);
@@ -239,14 +239,14 @@ const createResumeSection = (data) => {
   const _resume = {};
   Object.assign(_resume, data);
 
-  const sectionElement = document.querySelector("section.resume-section.summary-section.mb-5");
+  const sectionElement = document.querySelector('section.resume-section.summary-section.mb-5');
 
   const createDivResumeContent = () => {
-    const divResumeContent = document.createElement("div");
-    divResumeContent.classList.add("resume-section-content");
+    const divResumeContent = document.createElement('div');
+    divResumeContent.classList.add('resume-section-content');
 
-    const pElement = document.createElement("p");
-    pElement.classList.add("mb-0");
+    const pElement = document.createElement('p');
+    pElement.classList.add('mb-0');
 
     const pTextElement = document.createTextNode(_resume.about);
     pElement.append(pTextElement);
@@ -268,12 +268,12 @@ const createExperienceSection = (data) => {
   const _resume = {};
   Object.assign(_resume, data);
 
-  const divElement = document.querySelector("div.resume-timeline.position-relative");
+  const divElement = document.querySelector('div.resume-timeline.position-relative');
 
   const createArticleElement = () => {
     //< article class="resume-timeline-item position-relative pb-5" >
-    const articleElement = document.createElement("article");
-    articleElement.classList.add("resume-timeline-item", "position-relative", "pb-5");
+    const articleElement = document.createElement('article');
+    articleElement.classList.add('resume-timeline-item', 'position-relative', 'pb-5');
 
     return articleElement;
   };
@@ -281,26 +281,26 @@ const createExperienceSection = (data) => {
   const createDivHeaderElement = (experience) => {
     const _experience = {};
     Object.assign(_experience, experience);
-    const divHeaderElement = document.createElement("div");
-    divHeaderElement.classList.add("resume-timeline-item-header", "mb-2");
+    const divHeaderElement = document.createElement('div');
+    divHeaderElement.classList.add('resume-timeline-item-header', 'mb-2');
 
-    const divPositionElement = document.createElement("div");
-    divPositionElement.classList.add("d-flex", "flex-column", "flex-md-row");
+    const divPositionElement = document.createElement('div');
+    divPositionElement.classList.add('d-flex', 'flex-column', 'flex-md-row');
 
-    const h3PositionElement = document.createElement("h3");
-    h3PositionElement.classList.add("resume-position-title", "font-weight-bold", "mb-1");
+    const h3PositionElement = document.createElement('h3');
+    h3PositionElement.classList.add('resume-position-title', 'font-weight-bold', 'mb-1');
 
     const positionText = document.createTextNode(_experience.position);
     h3PositionElement.append(positionText);
 
-    const divCompanyElement = document.createElement("div");
-    divCompanyElement.classList.add("resume-company-name", "ml-auto");
+    const divCompanyElement = document.createElement('div');
+    divCompanyElement.classList.add('resume-company-name', 'ml-auto');
 
     const companyText = document.createTextNode(_experience.company);
     divCompanyElement.append(companyText);
 
-    const divTimeElement = document.createElement("div");
-    divTimeElement.classList.add("resume-position-time");
+    const divTimeElement = document.createElement('div');
+    divTimeElement.classList.add('resume-position-time');
 
     const timeText = document.createTextNode(`${_experience.time.start} - ${_experience.time.end}`);
     divTimeElement.append(timeText);
@@ -317,29 +317,29 @@ const createExperienceSection = (data) => {
     const _experience = {};
     Object.assign(_experience, experience);
 
-    const divContentElement = document.createElement("div");
-    divContentElement.classList.add("resume-timeline-item-desc");
+    const divContentElement = document.createElement('div');
+    divContentElement.classList.add('resume-timeline-item-desc');
 
-    const pDescription = document.createElement("p");
+    const pDescription = document.createElement('p');
     const descriptionExperienceText = document.createTextNode(_experience.description);
     pDescription.append(descriptionExperienceText);
-    pDescription.innerHTML = pDescription.innerText.split("I work").join("</br> I work");
+    pDescription.innerHTML = pDescription.innerText.split('I work').join('</br> I work');
 
-    const h4Element = document.createElement("h4");
-    h4Element.classList.add("resume-timeline-item-desc-heading", "font-weight-bold");
+    const h4Element = document.createElement('h4');
+    h4Element.classList.add('resume-timeline-item-desc-heading', 'font-weight-bold');
 
-    const descriptionTechText = document.createTextNode("Technologies used:");
+    const descriptionTechText = document.createTextNode('Technologies used:');
     h4Element.append(descriptionTechText);
 
-    const ulElement = document.createElement("ul");
-    ulElement.classList.add("list-inline");
+    const ulElement = document.createElement('ul');
+    ulElement.classList.add('list-inline');
 
     _experience.technologies.forEach((tech) => {
-      const liElement = document.createElement("li");
-      liElement.classList.add("list-inline-item");
+      const liElement = document.createElement('li');
+      liElement.classList.add('list-inline-item');
 
-      const spanElement = document.createElement("span");
-      spanElement.classList.add("badge", "badge-primary", "badge-pill");
+      const spanElement = document.createElement('span');
+      spanElement.classList.add('badge', 'badge-primary', 'badge-pill');
 
       const technologyText = document.createTextNode(tech);
       spanElement.append(technologyText);
@@ -374,41 +374,41 @@ const createSkillSection = (data) => {
   const _resume = {};
   Object.assign(_resume, data);
 
-  const divElement = document.querySelector("div.resume-section-content.skill-section");
+  const divElement = document.querySelector('div.resume-section-content.skill-section');
 
   const createDivFrontEndSkills = (skills) => {
-    const divSkill = document.createElement("div");
-    divSkill.classList.add("resume-skill-item");
+    const divSkill = document.createElement('div');
+    divSkill.classList.add('resume-skill-item');
 
-    const h4TitleElement = document.createElement("h4");
-    h4TitleElement.classList.add("resume-skills-cat", "font-weight-bold");
+    const h4TitleElement = document.createElement('h4');
+    h4TitleElement.classList.add('resume-skills-cat', 'font-weight-bold');
 
-    const titleText = document.createTextNode("Frontend");
+    const titleText = document.createTextNode('Frontend');
     h4TitleElement.append(titleText);
 
-    const ulElement = document.createElement("ul");
-    ulElement.classList.add("list-unstyled", "mb-4");
+    const ulElement = document.createElement('ul');
+    ulElement.classList.add('list-unstyled', 'mb-4');
 
     skills.forEach((skill) => {
-      const liElement = document.createElement("li");
-      liElement.classList.add("mb-2");
+      const liElement = document.createElement('li');
+      liElement.classList.add('mb-2');
 
-      const divNameSkill = document.createElement("div");
-      divNameSkill.classList.add("resume-skill-name");
+      const divNameSkill = document.createElement('div');
+      divNameSkill.classList.add('resume-skill-name');
 
       const skillNameText = document.createTextNode(skill.name);
       divNameSkill.append(skillNameText);
 
-      const divProgress = document.createElement("div");
-      divProgress.classList.add("progress", "resume-progress");
+      const divProgress = document.createElement('div');
+      divProgress.classList.add('progress', 'resume-progress');
 
-      const divProgressBar = document.createElement("div");
-      divProgressBar.classList.add("progress-bar", "theme-progress-bar-dark");
-      divProgressBar.setAttribute("role", "progressbar");
-      divProgressBar.setAttribute("style", `width: ${skill.proficiency}`);
-      divProgressBar.setAttribute("aria-valuenow", "25");
-      divProgressBar.setAttribute("aria-valuemin", "0");
-      divProgressBar.setAttribute("aria-valuemax", "100");
+      const divProgressBar = document.createElement('div');
+      divProgressBar.classList.add('progress-bar', 'theme-progress-bar-dark');
+      divProgressBar.setAttribute('role', 'progressbar');
+      divProgressBar.setAttribute('style', `width: ${skill.proficiency}`);
+      divProgressBar.setAttribute('aria-valuenow', '25');
+      divProgressBar.setAttribute('aria-valuemin', '0');
+      divProgressBar.setAttribute('aria-valuemax', '100');
 
       divProgress.appendChild(divProgressBar);
       liElement.appendChild(divNameSkill);
@@ -423,38 +423,38 @@ const createSkillSection = (data) => {
   };
 
   const createDivBackEndSkills = (skills) => {
-    const divSkill = document.createElement("div");
-    divSkill.classList.add("resume-skill-item");
+    const divSkill = document.createElement('div');
+    divSkill.classList.add('resume-skill-item');
 
-    const h4TitleElement = document.createElement("h4");
-    h4TitleElement.classList.add("resume-skills-cat", "font-weight-bold");
+    const h4TitleElement = document.createElement('h4');
+    h4TitleElement.classList.add('resume-skills-cat', 'font-weight-bold');
 
-    const titleText = document.createTextNode("Backend");
+    const titleText = document.createTextNode('Backend');
     h4TitleElement.append(titleText);
 
-    const ulElement = document.createElement("ul");
-    ulElement.classList.add("list-unstyled", "mb-4");
+    const ulElement = document.createElement('ul');
+    ulElement.classList.add('list-unstyled', 'mb-4');
 
     skills.forEach((skill) => {
-      const liElement = document.createElement("li");
-      liElement.classList.add("mb-2");
+      const liElement = document.createElement('li');
+      liElement.classList.add('mb-2');
 
-      const divNameSkill = document.createElement("div");
-      divNameSkill.classList.add("resume-skill-name");
+      const divNameSkill = document.createElement('div');
+      divNameSkill.classList.add('resume-skill-name');
 
       const skillNameText = document.createTextNode(skill.name);
       divNameSkill.append(skillNameText);
 
-      const divProgress = document.createElement("div");
-      divProgress.classList.add("progress", "resume-progress");
+      const divProgress = document.createElement('div');
+      divProgress.classList.add('progress', 'resume-progress');
 
-      const divProgressBar = document.createElement("div");
-      divProgressBar.classList.add("progress-bar", "theme-progress-bar-dark");
-      divProgressBar.setAttribute("role", "progressbar");
-      divProgressBar.setAttribute("style", `width: ${skill.proficiency}`);
-      divProgressBar.setAttribute("aria-valuenow", "25");
-      divProgressBar.setAttribute("aria-valuemin", "0");
-      divProgressBar.setAttribute("aria-valuemax", "100");
+      const divProgressBar = document.createElement('div');
+      divProgressBar.classList.add('progress-bar', 'theme-progress-bar-dark');
+      divProgressBar.setAttribute('role', 'progressbar');
+      divProgressBar.setAttribute('style', `width: ${skill.proficiency}`);
+      divProgressBar.setAttribute('aria-valuenow', '25');
+      divProgressBar.setAttribute('aria-valuemin', '0');
+      divProgressBar.setAttribute('aria-valuemax', '100');
 
       divProgress.appendChild(divProgressBar);
       liElement.appendChild(divNameSkill);
@@ -469,24 +469,24 @@ const createSkillSection = (data) => {
   };
 
   const createDivOtherSkills = (skills) => {
-    const divSkill = document.createElement("div");
-    divSkill.classList.add("resume-skill-item");
+    const divSkill = document.createElement('div');
+    divSkill.classList.add('resume-skill-item');
 
-    const h4TitleElement = document.createElement("h4");
-    h4TitleElement.classList.add("resume-skills-cat", "font-weight-bold");
+    const h4TitleElement = document.createElement('h4');
+    h4TitleElement.classList.add('resume-skills-cat', 'font-weight-bold');
 
-    const titleText = document.createTextNode("Others");
+    const titleText = document.createTextNode('Others');
     h4TitleElement.append(titleText);
 
-    const ulElement = document.createElement("ul");
-    ulElement.classList.add("list-inline");
+    const ulElement = document.createElement('ul');
+    ulElement.classList.add('list-inline');
 
     skills.forEach((skill) => {
-      const liElement = document.createElement("li");
-      liElement.classList.add("list-inline-item");
+      const liElement = document.createElement('li');
+      liElement.classList.add('list-inline-item');
 
-      const spanNameSkill = document.createElement("span");
-      spanNameSkill.classList.add("badge", "badge-light");
+      const spanNameSkill = document.createElement('span');
+      spanNameSkill.classList.add('badge', 'badge-light');
 
       const skillNameText = document.createTextNode(skill);
       spanNameSkill.append(skillNameText);
@@ -518,35 +518,35 @@ const createEducationSection = (data) => {
   const _resume = {};
   Object.assign(_resume, data);
 
-  const divElement = document.querySelector("div.resume-section-content.education-section");
+  const divElement = document.querySelector('div.resume-section-content.education-section');
 
   const createUlElement = () => {
-    const ulElement = document.createElement("ul");
-    ulElement.classList.add("list-unstyled");
+    const ulElement = document.createElement('ul');
+    ulElement.classList.add('list-unstyled');
 
     return ulElement;
   };
 
   const createLiElement = (education) => {
-    const liElement = document.createElement("li");
-    liElement.classList.add("mb-2");
+    const liElement = document.createElement('li');
+    liElement.classList.add('mb-2');
 
-    const divEducationDesccription = document.createElement("div");
-    divEducationDesccription.classList.add("resume-degree", "font-weight-bold");
+    const divEducationDesccription = document.createElement('div');
+    divEducationDesccription.classList.add('resume-degree', 'font-weight-bold');
 
     const educationDescriptionText = document.createTextNode(
       `${education.degree.initial} in ${education.course}`
     );
     divEducationDesccription.append(educationDescriptionText);
 
-    const divEducationInstituition = document.createElement("div");
-    divEducationInstituition.classList.add("resume-degree-org");
+    const divEducationInstituition = document.createElement('div');
+    divEducationInstituition.classList.add('resume-degree-org');
 
     const educationInstituitionText = document.createTextNode(education.instituition);
     divEducationInstituition.append(educationInstituitionText);
 
-    const divEducationTime = document.createElement("div");
-    divEducationTime.classList.add("resume-degree-time");
+    const divEducationTime = document.createElement('div');
+    divEducationTime.classList.add('resume-degree-time');
 
     const educationTimeText = document.createTextNode(
       `${education.time.start} - ${education.time.end}`
@@ -578,27 +578,27 @@ const createLanguageSection = (data) => {
   const _resume = {};
   Object.assign(_resume, data);
 
-  const divElement = document.querySelector("div.resume-section-content.language-section");
+  const divElement = document.querySelector('div.resume-section-content.language-section');
 
   const createUlElement = () => {
-    const ulElement = document.createElement("ul");
-    ulElement.classList.add("list-unstyled", "resume-lang-list");
+    const ulElement = document.createElement('ul');
+    ulElement.classList.add('list-unstyled', 'resume-lang-list');
 
     return ulElement;
   };
 
   const createLiElement = (language) => {
-    const liElement = document.createElement("li");
-    liElement.classList.add("mb-2");
+    const liElement = document.createElement('li');
+    liElement.classList.add('mb-2');
 
-    const spanLanguageDesccription = document.createElement("span");
-    spanLanguageDesccription.classList.add("resume-lang-name", "font-weight-bold");
+    const spanLanguageDesccription = document.createElement('span');
+    spanLanguageDesccription.classList.add('resume-lang-name', 'font-weight-bold');
 
     const languageDescriptionText = document.createTextNode(language.name);
     spanLanguageDesccription.append(languageDescriptionText);
 
-    const smallLanguageProficiency = document.createElement("small");
-    smallLanguageProficiency.classList.add("text-muted", "font-weight-normal");
+    const smallLanguageProficiency = document.createElement('small');
+    smallLanguageProficiency.classList.add('text-muted', 'font-weight-normal');
 
     const languageProficiencyText = document.createTextNode(`(${language.proficiency})`);
     smallLanguageProficiency.append(languageProficiencyText);
@@ -627,7 +627,7 @@ const createTitle = (data) => {
   const _resume = {};
   Object.assign(_resume, data);
 
-  const titleElement = document.querySelector("title");
+  const titleElement = document.querySelector('title');
 
   const appendElements = () => {
     const titleText = document.createTextNode(`${_resume.name} | ${_resume.currentPosition}`);

@@ -167,8 +167,8 @@ export const data = {
   social: [
     { name: 'linkedin', url: 'http://www.linkedin.com/in/jvidalnunes' },
     { name: 'github', url: 'http://github.com/JVidalN' },
-    { name: 'website', url: 'http://jvidaln.github.io' },
     { name: 'twitter', url: 'http://twitter.com/JVidalN' },
+    // { name: 'website', url: 'https://jvidaln.github.io/dynamic-portfolio-resume-cv' },
     // { name: "facebook", url: "http://www.facebook.com/JVidalNunes" },
     // { name: "instagram", url: "http://www.instagram.com/jvidaln" },
   ],
